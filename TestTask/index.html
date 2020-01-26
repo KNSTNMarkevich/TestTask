@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="head">
+            <h1>Welcome to Pindosia!</h1>
+        </div>
+        <form class="form" action="#">
+            <div class="firstColumn">
+                <div class="cityList">
+                        <p>Cities list:</p>
+                        <textarea rows="10" cols="45" name="text" readonly>So far, it's empty here.</textarea>
+                </div>
+                <div class="mostPoints">
+                    <div class="mostPointBlock">
+                        <p>Eastern</p>
+                        <button id="EastButton" onclick="return false">PUSH</button i>
+                        <input  type="text" id="EastLabel" readonly></input>                   
+                    </div>
+                    <div class="mostPointBlock">
+                        <p>Western</p>
+                        <button id="WestButton" onclick="return false">PUSH</button>
+                        <input type="text"  id="WestLabel" readonly></input>
+                    </div>
+                    <div class="mostPointBlock">
+                        <p>Southern</p>
+                        <button id="SouthButton" onclick="return false">PUSH</button>
+                        <input type="text" id="SouthLabel" readonly></input>
+                    </div>
+                    <div class="mostPointBlock">
+                        <p>Northern</p>
+                        <button id="NorthButton" onclick="return false">PUSH</button>
+                        <input type="text" id="NorthLabel" readonly></input>
+                    </div>
+                </div>
+            </div>
+            <div class="firstColumn">
+                <div class="nearestCity">
+                <p>Closest city searching:</p>
+                </div>  
+                <div class="nearestCity">
+                <p>Enter latitude:</p>
+                <input type="text" id="latitude">
+                </div>
+                <div class="nearestCity">
+                <p>Enter longitude:</p>
+                <input type="text" id="longitude">
+                </div>
+                <div class="nearestCity">
+                <button id="closestCityButton" onclick="return false">PUSH</button>
+                </div>
+                <div class="nearestCity">
+                <input type="text" id="closestCity" readonly>
+                </div>  
+            </div>
+        </form>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
