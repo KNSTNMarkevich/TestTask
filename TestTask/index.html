@@ -14,16 +14,18 @@
         <div class="head">
             <h1>Welcome to Pindosia!</h1>
         </div>
+
         <form class="form" action="#">
-            <div class="firstColumn">
-                <div class="cityList">
-                        <p>Cities list:</p>
-                        <textarea rows="10" cols="45" name="text" readonly>So far, it's empty here.</textarea>
+            <div class="Column">
+                <p>Cities List: </p>
+                <div class="cityTable">
+                    <table id="city">
+                    </table>
                 </div>
                 <div class="mostPoints">
                     <div class="mostPointBlock">
                         <p>Eastern</p>
-                        <button id="EastButton" onclick="return false">PUSH</button i>
+                        <button id="EastButton" onclick="return false">PUSH</button>
                         <input  type="text" id="EastLabel" readonly></input>                   
                     </div>
                     <div class="mostPointBlock">
@@ -43,7 +45,7 @@
                     </div>
                 </div>
             </div>
-            <div class="firstColumn">
+            <div class="Column">
                 <div class="nearestCity">
                 <p>Closest city searching:</p>
                 </div>  
@@ -61,8 +63,32 @@
                 <div class="nearestCity">
                 <input type="text" id="closestCity" readonly>
                 </div>  
+                <div class="states">
+                    <p>State Abbreviations:</p>
+                    <p id="states"></p>
+                </div>
             </div>
+            
         </form>
+    </div>
+    <div class="allList">
+        <div class="listClass">
+            <div>
+                <p>Cities:</p>
+                <table id="listCity">
+                </table>
+            </div>
+            <div>
+                <p>Latitudes:</p>
+                <table id="listLatitude">
+                </table>
+            </div>
+            <div>
+                <p>Longitudes:</p>
+                <table id="listlongitude">
+                </table>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>

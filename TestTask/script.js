@@ -8,6 +8,12 @@ function CityMap(str) {
         this.list.push(new CityMapRecording(row));
     });
 }
+
+/**
+ *  Return the name of the easternmost city
+ *  @param {*} arrayOfCities - cardinal array "this.list"
+ *  @param {*} longitudeCoordinates - cardinal coordinates "longitude"
+ */
 CityMap.prototype.getEasternMostCity = function () {
     return this.list.reduce(
         (eastern, current) => {
@@ -18,6 +24,11 @@ CityMap.prototype.getEasternMostCity = function () {
         }
     );
 }
+/**
+ *  Return the name of the westernmost city
+ *  @param {*} arrayOfCities - cardinal array this.list
+ *  @param {*} longitudeCoordinates - cardinal coordinates "longitude"
+ */
 CityMap.prototype.getWeseternMostCity = function () {
     return this.list.reduce(
         (western, current) => {
@@ -28,6 +39,11 @@ CityMap.prototype.getWeseternMostCity = function () {
         }
     );
 }
+/**
+ *  Return the name of the southernmost city
+ *  @param {*} arrayOfCities - cardinal array this.list
+ *  @param {*} longitudeCoordinates - cardinal coordinates "latitude"
+ */
 CityMap.prototype.getSouthernMostCity = function () {
     return this.list.reduce(
         (southern, current) => {
@@ -38,6 +54,11 @@ CityMap.prototype.getSouthernMostCity = function () {
         }
     );
 }
+/**
+ *  Return the name of the northernmost city
+ *  @param {*} arrayOfCities - cardinal array this.list
+ *  @param {*} longitudeCoordinates - cardinal coordinates "latitude"
+ */
 CityMap.prototype.getNorthenMostCity = function () {
     return this.list.reduce(
         (northern, current) => {
@@ -49,7 +70,15 @@ CityMap.prototype.getNorthenMostCity = function () {
     );
 }
 
-
+/**
+ * return distance between two points (given the latitude/longitude of those points). It is being used to calculate the distance between two locations
+ * @param {*} lat1 Latitude of point 1 (in decimal degrees)
+ * @param {*} lon1 Longitude of point 1 (in decimal degrees)
+ * @param {*} lat2 Latitude of point 2 (in decimal degrees)
+ * @param {*} lon2 Longitude of point 2 (in decimal degrees)
+ * @param {*} unit the unit you desire for results where: 'M' is statute miles (default); 'K' is kilometers; 'N' is nautical miles 
+                 
+ */
 function distance(lat1, lon1, lat2, lon2, unit) {
     if ((lat1 == lat2) && (lon1 == lon2)) {
         return 0;
@@ -74,6 +103,12 @@ function distance(lat1, lon1, lat2, lon2, unit) {
         return dist;
     }
 }
+
+/**
+ * return name of Nearest city for 2 coordinates that latitude(lat) and lobgitude (lon)
+ *  @param {*} lat latitude point 
+ *  @param {*} lon longitude point
+ */
 CityMap.prototype.findNearestCity = function (lat, lan) {
     return this.list.map(function (k) {
         k.distance = distance(k.latitude, k.longitude, lat, lan);
@@ -83,30 +118,83 @@ CityMap.prototype.findNearestCity = function (lat, lan) {
     })[0];
 }
 
-document.getElementById("EastButton").addEventListener("click", function() {
+
+/**
+ * using the map function returns an array of cities from list
+ * @param {*} k currentValue
+ */
+CityMap.prototype.citiesList = function () {
+    return this.list.map(function (k) {
+        return k.city;
+    });
+};
+CityMap.prototype.latitudeList = function () {
+    return this.list.map(function (k) {
+        return k.latitude;
+    });
+};
+CityMap.prototype.longitideList = function () {
+    return this.list.map(function (k) {
+        return k.longitude;
+    });
+};
+/**
+ * using the map and substr function returns an array of stateAbbreviations
+ * @param {*} k currentValue
+ */
+CityMap.prototype.stateAbbreviations = function () {
+    return this.list.map(function (k) {
+        let arr = k.city.substr(-2)
+        return arr;
+    });
+}
+
+document.getElementById("EastButton").addEventListener("click", function (e) {
     document.getElementById("EastLabel").value = objCityMap.getEasternMostCity().city;
 }, false)
 
-document.getElementById("WestButton").addEventListener("click", function() {
+document.getElementById("WestButton").addEventListener("click", function (e) {
     document.getElementById("WestLabel").value = objCityMap.getWeseternMostCity().city;
 }, false)
 
-document.getElementById("SouthButton").addEventListener("click", function() {
+document.getElementById("SouthButton").addEventListener("click", function (e) {
     document.getElementById("SouthLabel").value = objCityMap.getSouthernMostCity().city;
 }, false)
 
-document.getElementById("NorthButton").addEventListener("click", function() {
+document.getElementById("NorthButton").addEventListener("click", function (e) {
     document.getElementById("NorthLabel").value = objCityMap.getNorthenMostCity().city;
 }, false)
 
-document.getElementById("closestCityButton").addEventListener("click", function() {
-    document.getElementById("closestCity").value = objCityMap.findNearestCity(document.getElementById("latitude").value,document.getElementById("longitude").value).city;
+document.getElementById("closestCityButton").addEventListener("click", function (e) {
+    document.getElementById("closestCity").value = objCityMap.findNearestCity(document.getElementById("latitude").value, document.getElementById("longitude").value).city;
 }, false)
 
-var objCityMap = new CityMap("Nashville, TN ,36.17 ,-86.78;New York, NY ,40.71 ,-74.00;Atlanta, GA ,33.75 ,-84.39;Denver, CO ,39.74 ,-104.98;Seattle, WA ,47.61 ,-122.33;Los Angeles, CA ,34.05 ,-118.24;Memphis, TN , 35.15 ,-90.05");
-console.log(objCityMap.list);
-console.log("Easternmost:", objCityMap.getEasternMostCity().city);
-console.log("Weseternmost:", objCityMap.getWeseternMostCity().city);
-console.log("Southernmost:", objCityMap.getSouthernMostCity().city);
-console.log("Northenmost:", objCityMap.getNorthenMostCity().city);
-console.log(objCityMap.findNearestCity(12, -100).city);
+let objCityMap = new CityMap("Nashville, TN ,36.17 ,-86.78;New York, NY ,40.71 ,-74.00;Atlanta, GA ,33.75 ,-84.39;Denver, CO ,39.74 ,-104.98;Seattle, WA ,47.61 ,-122.33;Los Angeles, CA ,34.05 ,-118.24;Memphis, TN , 35.15 ,-90.05");
+
+objCityMap.citiesList().forEach(function (c) {
+    let newDiv = document.createElement('tr');
+    newDiv.innerText = c;
+    document.getElementById('city').appendChild(newDiv);
+});
+window.addEventListener("load", function (e) {
+    let str = document.getElementById('states');
+    str.innerText = objCityMap.stateAbbreviations().filter(function (value, index, self) {
+        return self.indexOf(value) === index;
+    }).join(" ");
+
+});
+objCityMap.citiesList().forEach(function (c) {
+    let newDiv = document.createElement('tr');
+    newDiv.innerText = c;
+    document.getElementById('listCity').appendChild(newDiv);
+});
+objCityMap.latitudeList().forEach(function (c) {
+    let newDiv = document.createElement('tr');
+    newDiv.innerText = c;
+    document.getElementById('listLatitude').appendChild(newDiv);
+});
+objCityMap.longitideList().forEach(function (c) {
+    let newDiv = document.createElement('tr');
+    newDiv.innerText = c;
+    document.getElementById('listlongitude').appendChild(newDiv);
+});
