@@ -11,8 +11,8 @@ function CityMap(str) {
 
 /**
  *  Return the name of the easternmost city
- *  @param {*} arrayOfCities - cardinal array "this.list"
- *  @param {*} longitudeCoordinates - cardinal coordinates "longitude"
+ *  @param {*} eastern - previous value array list[]
+ *  @param {*} current - current value array list[]
  */
 CityMap.prototype.getEasternMostCity = function () {
     return this.list.reduce(
@@ -26,8 +26,8 @@ CityMap.prototype.getEasternMostCity = function () {
 }
 /**
  *  Return the name of the westernmost city
- *  @param {*} arrayOfCities - cardinal array this.list
- *  @param {*} longitudeCoordinates - cardinal coordinates "longitude"
+ *  @param {*} western - previous value array list[]
+ *  @param {*} current - current value array list[]
  */
 CityMap.prototype.getWeseternMostCity = function () {
     return this.list.reduce(
@@ -41,8 +41,8 @@ CityMap.prototype.getWeseternMostCity = function () {
 }
 /**
  *  Return the name of the southernmost city
- *  @param {*} arrayOfCities - cardinal array this.list
- *  @param {*} longitudeCoordinates - cardinal coordinates "latitude"
+ *  @param {*} southern - previous value array list[]
+ *  @param {*} current - current value array list[]
  */
 CityMap.prototype.getSouthernMostCity = function () {
     return this.list.reduce(
@@ -56,8 +56,8 @@ CityMap.prototype.getSouthernMostCity = function () {
 }
 /**
  *  Return the name of the northernmost city
- *  @param {*} arrayOfCities - cardinal array this.list
- *  @param {*} longitudeCoordinates - cardinal coordinates "latitude"
+ *  @param {*} northern - previous value of array list[]
+ *  @param {*} current - current value" array list[]
  */
 CityMap.prototype.getNorthenMostCity = function () {
     return this.list.reduce(
